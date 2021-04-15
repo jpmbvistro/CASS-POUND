@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <section class='main flex-container flex-column'>
+
+      <h1>All Posts, Ever (The Feed)</h1>
+      <a href="/user/<%= user._id %>"> <h2>Your Profile</h2> </a>
+      <table>
+        <% if(posts) { %>
+            <% for(let i = 0 ; i<posts.length;i++) { %>
+            <div class="post">
+              <a href='/user/<%= posts[i].authorID %>'<h2><%= posts[i].authorName %></h2></a>
+              <a href='/post/<%= posts[i]._id%>'>
+                <img src="<%= posts[i].path %>" alt="<%= posts[i].title %>">
+              </a>
+              <p><%= posts[i].description %></p>
+              <button> Likes <%= posts[i].likes %></button>
+            </div>
+            <% } %>
+
+        <% } %>
+      </table>
+      <%- include('./partials/make-post.ejs') %>
+      <%- include('./partials/add-button.ejs') %>
+      <%- include('./partials/back-button.ejs') %>
+    </section>
+    <script type="text/javascript" src='../js/user.js'></script>
+    <script type="text/javascript" src='../js/main.js'></script>
+  </body>
+</html>

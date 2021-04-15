@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <link rel="stylesheet" href="/css/profile.css">
+    <section class='main flex-container flex-column'>
+      <h1><%= user.local.email %></h1>
+      <h2>Your Posts</h2>
+      <% if (posts) { %>
+      <div class="grid-container user-posts">
+        <% for(let i = 0 ; i < posts.length ; i++) { %>
+          <div class="user-post">
+            <a href="/post/<%= posts[i]._id %>">
+              <img src="../<%= posts[i].path %>" alt="<%= posts[i].title %>">
+            </a>
+          </div>
+        <% } %>
+      </div>
+      <% } %>
+
+      <%- include('./partials/make-post.ejs') %>
+      <%- include('./partials/add-button.ejs') %>
+      <%- include('./partials/back-button.ejs') %>
+    </section>
+    <script type="text/javascript" src='../js/user.js'>console.log(user)</script>
+    <script type="text/javascript" src='../js/main.js'>console.log(user)</script>
+  </body>
+</html>

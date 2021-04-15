@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <section class='main'>
+      <h1>Order Coffee!</h1>
+      <form id='newDrink' class="" action="/order" method="post">
+        <label for="name">
+          Name:
+          <input type="text" name="name" placeholder='Customer Name' value="">
+        </label>
+        <label for="drink">
+          Drink:
+          <select form='newDrink' class="drink-type" name="drink">
+            <option value="cb">Cold Brew</option>
+            <option value="cw">Cold Wave</option>
+          </select>
+        </label>
+        <input type="submit" name="submit" value="submit">
+      </form>
+      <section class='module'>
+        <h2>Ongoing Orders</h2>
+        <h3>Estimated Wait Time: <span><%= drinks.length * 2 %></span> Minutes</h3>
+        
+        <table>
+          <tbody>
+
+              <% for(let i = 0 ; i<drinks.length;i++) { %>
+              <tr>
+                <td><%= drinks[i].name%></td>
+                <td><%= drinks[i].drink%></td>
+              </tr>
+              <% } %>
+
+          </tbody>
+        </table>
+
+      </section>
+      <%- include('./partials/back-button.ejs') %>
+    </section>
+  </body>
+</html>

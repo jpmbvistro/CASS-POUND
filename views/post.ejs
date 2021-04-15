@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <section class='main flex-container flex-column'>
+      <h1><%=post.title%></h1>
+        <div class="post">
+          <a href='/user/<%= post.authorID %>'><h2><%= post.authorName %></h2></a>
+          <img src="../<%= post.path %>" alt="<%= post.title %>">
+          <input type="hidden" name="id" value="<%=post._id%>">
+          <p><%= post.description %></p>
+          <button> Likes:  <%= post.likes %></button>
+          <% if(post.authorID === user._id) { %><button class='delete' type="button" name="button">Delete</button><% } %>
+          <h3>Comments</h3><span><% if(comments) { %><%=comments.length%><% } else { %>0<% } %></span>
+          <label for="">Add New Comment
+            <input type="text" name="comment-body" placeholder='nice picture' value="">
+            <button id='submitComment' type="button" name="button">Submit</button>
+          </label>
+          <% if(comments) { %>
+
+          <ul class='comments'>
+
+            <% for(let j = 0 ; j < comments.length ; j++) { %>
+              <h4>
+                <a href="/profile/<%= comments[j].authorID %>"><%= comments[j].authorName %></a>
+              </h4>
+              <p><%= comments[j].commentBody %></p>
+            <% } %>
+          </ul>
+          <% } %>
+        </div>
+        <%- include('./partials/make-post.ejs') %>
+        <%- include('./partials/add-button.ejs') %>
+        <%- include('./partials/back-button.ejs') %>
+    </section>
+    <script type="text/javascript" src='../js/main.js'></script>
+  </body>
+</html>
